@@ -9,12 +9,12 @@ const HomePage = ({ listings }) => {
     <div>
       <Navbar />
       <div className="homepage-content">
-        {/* <Sidebar /> */}
         <Sidebar />
         <main>
           <h1>İlanlar</h1>
           <div className="ilan-listesi">
             {listings.map((listing) => (
+             <Link to={`/detay/${listing.id}`} >
               <div className="ilan" key={listing.id}>
                 {listing.image && (
                   <img
@@ -24,11 +24,11 @@ const HomePage = ({ listings }) => {
                   />
                 )}
                 <h2>{listing.title}</h2>
+
                 {/* Detaylar düğmesi */}
-                <Link to={`/detay/${listing.id}`} className="details-button">
-                  Detaylar
-                </Link>
+
               </div>
+             </Link>
             ))}
           </div>
         </main>
@@ -39,3 +39,10 @@ const HomePage = ({ listings }) => {
 };
 
 export default HomePage;
+
+
+/*
+                <Link to={`/detay/${listing.id}`} className="details-button">
+                  Detaylar
+                </Link>
+*/

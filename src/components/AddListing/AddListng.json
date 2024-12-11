@@ -1,6 +1,7 @@
 [
 
     {
+        "id": "real_estate",
         "title" : "Emlak",
         "icon" : "🏠",
         "color" : "#f7b500",
@@ -47,7 +48,7 @@
 
         ]
     }, {
-
+        "id": "vehicles",
         "title": "Vasıta",
         "icon": "🚗",
         "color": "#e74c3c",

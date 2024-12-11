@@ -1,75 +1,70 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import "./AddListing.css";
-import { FormControl, InputLabel, Select, MenuItem,TextField,Button } from '@mui/material';
-import categories from "./AddListng.json";
+import styles from './AddListing.module.css';
+import { FormControl, InputLabel, Select, MenuItem, TextField, Button } from '@mui/material';
+import categories from './AddListng.json';
 
-
-const AddListing = ({onAddListing}) => {
-  const [selectedCategory, setSelectedCategory] = useState(null) //seçilen kategori tutan state
+const AddListing = ({ onAddListing }) => {
+  const [selectedCategory, setSelectedCategory] = useState(null); // seçilen kategori tutan state
   const [formData, setFormData] = useState({}); // Form verilerini tutan state
   const navigate = useNavigate();
-
 
   useEffect(() => {
     if (selectedCategory) {
       const initialFormData = {};
       selectedCategory.fields.forEach((field) => {
-        initialFormData[field.name] = ""; //boş yer
+        initialFormData[field.name] = ""; // Boş yer
       });
       setFormData(initialFormData);
     }
   }, [selectedCategory]);
 
-    //seçilen katagoriye göre güncelleme
-    const handleCategoryClick = (category) => {
-      setSelectedCategory(category);
-    };
+  // Seçilen kategoriye göre güncelleme
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
 
-    //  metin alanlarına girişi için
-    const handleChange = (e) => {
+  // Metin alanlarına giriş için
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-     };
+  };
 
-    
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Sayfanın yeniden yüklenmesini önlemek için
+    if (Object.values(formData).every((value) => value !== "")) {
+      // Kontrol kısmı, dolu olup olmadığını kontrol eder
+      const newListing = { ...formData, category: selectedCategory.title };
+      onAddListing(newListing);
+      navigate('/'); // Ana sayfaya yönlendirme
+      alert('İlan başarıyla eklendi!');
 
-     const handleSubmit = (e) => {
-      e.preventDefault(); // Sayfanın yeniden yüklenmesini önlemek için yoksa gidicek her şey
-      if (Object.values(formData).every((value) => value !== "")) { //kontrol kısmı dolu olup olmadığıan bakıyoruz zorunlu yerlerin
-        const newListing = { ...formData, category: selectedCategory.title };
-        onAddListing(newListing);
-        navigate('/'); // Ana sayfaya yönlendirmek için
-        alert('İlan başarıyla eklendi!');
-  
-        setSelectedCategory(null);
-        setFormData({
-        });
-      } else {
-        alert('Lütfen tüm alanları doldurun!');
-      }
-    };
+      setSelectedCategory(null);
+      setFormData({});
+    } else {
+      alert('Lütfen tüm alanları doldurun!');
+    }
+  };
 
-    
-    return (
-      <div>
-        <Navbar /> 
-        {!selectedCategory ? ( //kategori seçilmeden önceki sayfa 
-        <div className="outer-wrapper">
-          <div className="category-page">
+  return (
+    <div>
+      <Navbar />
+      {!selectedCategory ? ( // Kategori seçilmeden önceki sayfa
+        <div className={styles.outerWrapper}>
+          <div className={styles.categoryPage}>
             <h2>Adım Adım Kategori Seç</h2>
-            <div className="card-container">
+            <div className={styles.cardContainer}>
               {categories.map((category, index) => (
                 <div
                   key={index}
-                  className="card"
+                  className={styles.card}
                   style={{ borderTop: `8px solid ${category.color}` }}
                   onClick={() => handleCategoryClick(category)}
                 >
                   <div
-                    className="icon"
+                    className={styles.icon}
                     style={{ backgroundColor: category.color }}
                   >
                     {category.icon}
@@ -80,15 +75,13 @@ const AddListing = ({onAddListing}) => {
             </div>
           </div>
         </div>
-       )
-       //kategoriye göre gelicek şeyleri belirliyoruz 
-       : ( <form onSubmit={handleSubmit} style={{ padding: "1rem" }}>
+      ) : (
+        <form onSubmit={handleSubmit} style={{ padding: '1rem' }}>
           <h2>{selectedCategory.title} İlanı Ekle</h2>
           {selectedCategory.fields.map((field, index) => (
-            <div key={index} style={{ marginBottom: "1rem" }}>
-              
-              {/* text yapısı için burası gelcek */}
-              {field.type === "text" && (
+            <div key={index} style={{ marginBottom: '1rem' }}>
+              {/* Metin alanı için */}
+              {field.type === 'text' && (
                 <TextField
                   fullWidth
                   label={field.label}
@@ -98,8 +91,8 @@ const AddListing = ({onAddListing}) => {
                 />
               )}
 
-              {/* burasıda seçenekleri olan yapı için */}
-              {field.type === "select" && (
+              {/* Seçenekli yapı için */}
+              {field.type === 'select' && (
                 <FormControl fullWidth>
                   <InputLabel>{field.label}</InputLabel>
                   <Select
@@ -114,7 +107,6 @@ const AddListing = ({onAddListing}) => {
                     ))}
                   </Select>
                 </FormControl>
-
               )}
             </div>
           ))}
@@ -125,12 +117,13 @@ const AddListing = ({onAddListing}) => {
         </form>
       )}
 
-        <Footer></Footer>
-      </div>
-    );
-}
+      <Footer />
+    </div>
+  );
+};
 
-export default AddListing
+export default AddListing;
+
 
 
 

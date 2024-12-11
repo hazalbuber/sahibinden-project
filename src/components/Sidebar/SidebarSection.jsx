@@ -8,7 +8,7 @@ const SidebarSection = ({ title, items }) => {
       <ul>
         {items.map((item, index) => (
           <li key={index}>
-            <Link to={`/kategori/${item}`}>{item}</Link>
+            <Link to={`/kategori/${item.id}`}>{item.title}</Link>
           </li>
         ))}
       </ul>

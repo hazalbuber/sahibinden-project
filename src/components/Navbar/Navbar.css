@@ -1,93 +1,88 @@
-/* Navbar */
+/* Navbar Container */
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #3c3f4e;
-    padding: 0.5rem 1rem;
-    color: #fff;
-  }
-  
-  .navbar-logo .logo-text {
-    background-color: #ffff00;
-    padding: 0.5rem;
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: #000;
-    text-decoration: none;
-  }
-  
-  .navbar-search {
-    display: flex;
-    background-color: #292c38;
-    border-radius: 5px;
-    padding: 0.5rem;
-    margin-left: -650px;
-  }
-  
-  .navbar-search input {
-    border: none;
-    background: none;
-    color: #fff;
-    outline: none;
-    padding: 0.5rem;
-  }
-  
-  .search-button {
-    background: none;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  .navbar-links {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar-links li {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar-links a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 0.9rem;
-  }
-  
-  .post-ad-button {
-    padding: 0.5rem 1rem;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .post-ad-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Navbar2 */
-  .navbar2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-  }
-  
-  .navbar-logo2 .logo-text2 {
-    background-color: #ffff00;
-    padding: 0.5rem;
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: #000;
-    text-decoration: none;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Logo + Search on left, Links on right */
+  background-color: #3c3f4e;
+  padding: 0.5rem 1rem;
+  color: #fff;
+}
+
+/* Left Section: Logo and Search */
+.navbar-left {
+  display: flex;
+  align-items: center; /* Align vertically */
+  gap: 1rem; /* Space between logo and search bar */
+}
+
+.logo-text {
+  background-color: #ffff00;
+  padding: 0.1rem; /* Daha küçük bir padding */
+  font-weight: bold;
+  font-size: 0.8rem; /* Daha küçük bir yazı boyutu */
+  color: #000;
+  text-decoration: none;
+  border-radius: 3px; /* Köşeleri biraz daha yumuşatmak için */
+}
+
+/* Search Bar Styling */
+.navbar-search {
+  display: flex;
+  align-items: center; /* Align input and button vertically */
+  background-color: #292c38;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.navbar-search input {
+  border: none;
+  background: none;
+  color: #fff;
+  outline: none;
+  padding: 0.5rem;
+}
+
+.search-button {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Right Section: Links */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+/* Post Ad Button */
+.post-ad-button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.post-ad-button:hover {
+  background-color: #0056b3;
+}
+
   

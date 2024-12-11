@@ -6,10 +6,11 @@ import { FormControl, InputLabel, Select, MenuItem, TextField, Button } from '@m
 import categories from './AddListng.json';
 
 const AddListing = ({ onAddListing }) => {
-  const [selectedCategory, setSelectedCategory] = useState(null); // seçilen kategori tutan state
+  const [selectedCategory, setSelectedCategory] = useState(null); // Seçilen kategori tutan state
   const [formData, setFormData] = useState({}); // Form verilerini tutan state
+  const [selectedImage, setSelectedImage] = useState(null); // Fotoğraf için state
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (selectedCategory) {
       const initialFormData = {};
@@ -31,17 +32,28 @@ const AddListing = ({ onAddListing }) => {
     setFormData({ ...formData, [name]: value });
   };
 
+  // Fotoğraf dosyası değiştiğinde çağrılır
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedImage(file);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault(); // Sayfanın yeniden yüklenmesini önlemek için
     if (Object.values(formData).every((value) => value !== "")) {
       // Kontrol kısmı, dolu olup olmadığını kontrol eder
-      const newListing = { ...formData, category: selectedCategory.title };
+      const newListing = { 
+        ...formData, 
+        category: selectedCategory.title, 
+        image: selectedImage 
+      };
       onAddListing(newListing);
       navigate('/'); // Ana sayfaya yönlendirme
       alert('İlan başarıyla eklendi!');
 
       setSelectedCategory(null);
       setFormData({});
+      setSelectedImage(null);
     } else {
       alert('Lütfen tüm alanları doldurun!');
     }
@@ -110,45 +122,30 @@ const AddListing = ({ onAddListing }) => {
             </div>
           ))}
 
+          {/* Fotoğraf Yükleme Alanı */}
+          <div style={{ marginBottom: '1rem' }}>
+            <label htmlFor="fileInput" style={{ cursor: 'pointer', color: 'blue' }}>Fotoğraf Seç</label>
+            <input
+              id="fileInput"
+              type="file"
+              onChange={handleFileChange}
+              accept="image/*"
+              style={{ display: 'none' }} // Görünmez yaparak yalnızca label tıklanabilir olur
+            />
+            {selectedImage && (
+              <p style={{ marginTop: '0.5rem' }}>Fotoğraf Seçildi!!</p>
+            )}
+          </div>
+
+
           <Button type="submit" variant="contained" color="primary">
             İlan Ekle
           </Button>
         </form>
       )}
-
     </div>
   );
 };
 
 export default AddListing;
 
-
-
-
-  /* resim dosyası seçtiğinde çağrılan fonksiyon.
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const previewURL = URL.createObjectURL(file);
-      setFormData({ ...formData, image: file, previewImage: previewURL });
-    }
-  }; */
-
-
-
-  /*
-  
-            <label>
-            Fotoğraf:
-            <input type="file" name="image" accept="image/*" onChange={handleImageChange} />
-          </label>
-          {formData.previewImage && (
-            <img
-              src={formData.previewImage}
-              alt="Fotoğraf Önizleme"
-              style={{ maxWidth: '100px', marginTop: '0.5rem' }}
-            />
-          )}
-          <button type="submit">İlan Ekle</button> 
-
-  */

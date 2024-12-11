@@ -1,6 +1,6 @@
 import React from 'react';
 import SidebarSection from './SidebarSection';
-import "./Sidebar.css";
+import './Sidebar.css';
 
 const Sidebar = () => {
   const categories = [
@@ -24,17 +24,28 @@ const Sidebar = () => {
     "Hasarlı Araçlar"
   ];
 
+  const generateItems = (items, categoryId) =>
+    items.map((item, index) => ({
+      title: item,
+      id: categoryId, // Tüm bu kategorilere aynı ID atanır
+    }));
+
   return (
     <div className="sidebar">
-      <SidebarSection title={categories[0]} items={categories.slice(1, 8)} />
+      <SidebarSection
+        title={categories[0]}
+        items={generateItems(categories.slice(1, 8), 'real_estate')}
+      />
       <p>-------------------------------------------</p>
-      <SidebarSection title={categories[8]} items={categories.slice(9)} />
+      <SidebarSection
+        title={categories[8]}
+        items={generateItems(categories.slice(9), 'vehicles')}
+      />
     </div>
   );
 };
 
 export default Sidebar;
-
 
 
 

@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import DetailPage from './components/DetailPage/DetailPage';
 import AddListing from './components/AddListing/AddListing';
-
 import SignupLoginPage from './components/SignupLogin/SignupLoginPage';
 import CategoryPage from './components/CategoryPage/CategoryPage';
 
@@ -12,6 +11,7 @@ const App = () => {
   const [listings, setListings] = useState([
     {
       id: 1,
+      category: 'real_estate',
       title: 'Satılık Daire',
       price: '2.000.000 ',
       location: 'İstanbul',
@@ -22,6 +22,7 @@ const App = () => {
     {
       id: 2,
       title: 'Kiralık Daire',
+      category: 'vehicles',
       price: '5.000 TL/ay',
       location: 'Ankara',
       metrekare: 123,
@@ -31,6 +32,7 @@ const App = () => {
     {
       id: 3,
       title: 'Satılık Araba',
+      category: 'vehicles',
       price: '350.000 TL',
       location: 'İzmir',
       metrekare: 123,
@@ -40,6 +42,7 @@ const App = () => {
     {
       id: 4,
       title: 'Kiralık Araba',
+      category: 'vehicles',
       price: '1.500 TL/gün',
       location: 'Antalya',
       metrekare: 123,
@@ -49,6 +52,7 @@ const App = () => {
     {
       id: 5,
       title: 'Kadın Mont',
+      category: 'vehicles',
       price: '750 TL',
       location: 'Bursa',
       metrekare: 123,
@@ -58,6 +62,7 @@ const App = () => {
     {
       id: 6,
       title: 'Erkek Ayakkabı',
+      category: 'vehicles',
       price: '500 TL',
       location: 'Adana',
       metrekare: 123,
@@ -67,6 +72,7 @@ const App = () => {
     {
       id: 7,
       title: 'Çocuk Bisikleti',
+      category: 'vehicles',
       price: '1.200 TL',
       location: 'Eskişehir',
       metrekare: 123,
@@ -75,6 +81,7 @@ const App = () => {
     },
     {
       id: 8,
+      category: 'vehicles',
       title: 'Satılık Motosiklet',
       price: '45.000 TL',
       location: 'Kocaeli',
@@ -84,6 +91,7 @@ const App = () => {
     },
     {
       id: 9,
+      category: 'vehicles',
       title: '2+1 Eşyalı Ev',
       price: '3.500 TL/ay',
       location: 'Muğla',
@@ -204,7 +212,7 @@ const App = () => {
           }
         />
         <Route path="/detay/:id" element={<DetailPage listings={listings} />} />
-        <Route path="/kategori/:categoryName" element={<CategoryPage />} />
+        <Route path="/kategori/:id" element={<CategoryPage listings={listings} />} />
       </Routes>
     </Router>
   );

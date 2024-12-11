@@ -3,7 +3,7 @@ import Navbar from '../Navbar/Navbar';
 import Sidebar from '../Sidebar/Sidebar';
 import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
-import "./HomePage.css";
+import './HomePage.css';
 
 const HomePage = ({ listings, user, onLogin, onLogout }) => {
   return (
@@ -17,10 +17,15 @@ const HomePage = ({ listings, user, onLogin, onLogout }) => {
             {listings.map((listing) => (
               <Link to={`/detay/${listing.id}`} key={listing.id}>
                 <div className="ilan">
+                  {/* Fotoğraf Gösterimi */}
                   {listing.image && (
                     <img
                       className="ilan-img"
-                      src={listing.image}
+                      src={
+                        listing.image instanceof File || listing.image instanceof Blob
+                          ? URL.createObjectURL(listing.image)
+                          : listing.image // Eğer zaten bir URL ise doğrudan kullan
+                      }
                       alt={listing.title}
                     />
                   )}

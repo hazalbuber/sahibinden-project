@@ -1,0 +1,66 @@
+/* İlan ekleme kısmının başlangıç buton/kartları*/
+.outer-wrapper {
+    background-color: #fff;
+    border-radius: 16px; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+    padding: 40px; 
+    max-width: 600px;
+    margin: 40px auto; 
+  }
+  
+  .category-page {
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  /* Kartların düzeni */
+  .card-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  
+  /* Kart tasarımı */
+  .card {
+    width: 180px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 50%;
+    margin-bottom: 16px;
+    font-size: 32px;
+  }
+  
+  .card h3 {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+  }
+  
+  

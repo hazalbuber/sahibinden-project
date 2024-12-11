@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import DetailPage from './components/DetailPage';
-import AddListing from './components/AddListing';
+import HomePage from './components/HomePage/HomePage';
+import DetailPage from './components/DetailPage/DetailPage';
+import AddListing from './components/AddListing/AddListing';
 import './styles.css';
-import SignupLoginPage from './components/SignupLoginPage';
-import CategoryPage from './components/CategoryPage';
+import SignupLoginPage from './components/SignupLogin/SignupLoginPage';
+import CategoryPage from './components/CategoryPage/CategoryPage';
+
 
 const App = () => {
   const [listings, setListings] = useState([
@@ -144,23 +145,66 @@ const App = () => {
       roomNum: '3+1',
       image: 'https://via.placeholder.com/300x200?text=Satılık+Tarla',
     },
+
+  ]);
+  const [user, setUser] = useState(null); // Aktif kullanıcı
+  const [users, setUsers] = useState([ // Örnek kayıtlı kullanıcılar
+    { username: "ElifHzl", email: "elif@outlook.com", password: "123456" },
   ]);
 
-
-  // Yeni ilan ekleme 
   const handleAddListing = (newListing) => {
     setListings((prevListings) => [...prevListings, { id: Date.now(), ...newListing }]);
+  };
+
+  const handleLogin = (email, password) => {
+    const foundUser = users.find(
+      (user) => user.email === email && user.password === password
+    );
+    if (foundUser) {
+      setUser(foundUser);
+      return true; // Giriş başarılı
+    } else {
+      alert("Kullanıcı bulunamadı veya şifre hatalı!");
+      return false; // Giriş başarısız
+    }
+  };
+
+  const handleSignUp = (newUser) => {
+    setUsers((prevUsers) => [...prevUsers, newUser]);
+    setUser(newUser);
+  };
+
+  const handleLogout = () => {
+    setUser(null);
   };
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage listings={listings} />} />
-        {/* Dinamik bir rota tanımlandı */}
+        <Route
+          path="/"
+          element={
+            <HomePage listings={listings} user={user} onLogout={handleLogout} />
+          }
+        />
+        <Route
+          path="/ilan-ekle"
+          element={
+            user ? (
+              <AddListing onAddListing={handleAddListing} />
+            ) : (
+              <SignupLoginPage onLogin={handleLogin} onSignUp={handleSignUp} />
+            )
+          }
+        />
+        <Route
+          path="/giriş-yap"
+          element={
+            <SignupLoginPage onLogin={handleLogin} onSignUp={handleSignUp} />
+          }
+        />
         <Route path="/detay/:id" element={<DetailPage listings={listings} />} />
-        <Route path="/ilan-ekle" element={<AddListing onAddListing={handleAddListing} />} />
-        <Route path="/giriş-yap" element={<SignupLoginPage onAddListing={handleAddListing} />} />
-        <Route path="/kategori/:categoryName" element={<CategoryPage listings={listings} />} />
+        <Route path="/kategori/:categoryName" element={<CategoryPage />} />
       </Routes>
     </Router>
   );

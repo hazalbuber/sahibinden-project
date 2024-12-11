@@ -1,10 +1,10 @@
 import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
-import Footer from './Footer';
-import '../styles.css';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
+import "./AddListing.css";
 import { FormControl, InputLabel, Select, MenuItem,TextField,Button } from '@mui/material';
-import categories from "../components/AddListng.json";
+import categories from "./AddListng.json";
 
 
 const AddListing = ({onAddListing}) => {

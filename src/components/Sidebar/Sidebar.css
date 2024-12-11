@@ -1,0 +1,43 @@
+/* Sidebar */
+.sidebar {
+    padding: 1rem;
+    height: calc(100vh - 60px); 
+    top: 70px; 
+    left: 0; 
+    z-index: 10; 
+    position: absolute;
+  }
+  
+  .sidebar-section {
+    margin-bottom: 2rem;
+  }
+  
+  .sidebar-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .sidebar-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar-section li {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+  }
+  
+  
+  .homepage-content {
+    display: flex;
+    margin-left: 250px; 
+  }
+  
+  main {
+    flex: 1;
+    padding: 2rem;
+    background-color: #f8f9fa;
+  }

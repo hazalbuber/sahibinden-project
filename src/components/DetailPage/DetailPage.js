@@ -1,8 +1,8 @@
 import React from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
 import { useParams } from 'react-router-dom';
-import '../styles.css';
+import "./DetailPage.css";
 
 const DetailPage = ({ listings }) => {
   const { id } = useParams();

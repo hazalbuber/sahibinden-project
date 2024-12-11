@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
-import Footer from '../Footer/Footer';
 import styles from './AddListing.module.css';
 import { FormControl, InputLabel, Select, MenuItem, TextField, Button } from '@mui/material';
 import categories from './AddListng.json';
@@ -10,7 +9,7 @@ const AddListing = ({ onAddListing }) => {
   const [selectedCategory, setSelectedCategory] = useState(null); // seçilen kategori tutan state
   const [formData, setFormData] = useState({}); // Form verilerini tutan state
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     if (selectedCategory) {
       const initialFormData = {};
@@ -117,7 +116,6 @@ const AddListing = ({ onAddListing }) => {
         </form>
       )}
 
-      <Footer />
     </div>
   );
 };

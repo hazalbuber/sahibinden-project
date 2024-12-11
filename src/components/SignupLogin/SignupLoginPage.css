@@ -11,7 +11,7 @@
   }
   
   .logo-text {
-    font-size: 32px; /* Daha büyük yazı */
+    font-size: 32px; 
     font-weight: bold;
     color: #333;
     margin: 0;
@@ -81,7 +81,7 @@
   }
   
   .form-button:hover {
-    background-color: #0056b3; /* Hover rengi */
+    background-color: #0056b3; 
   }
   
   .switch-button {

@@ -23,7 +23,6 @@ const AddListing = ({onAddListing}) => {
     }
   }, [selectedCategory]);
 
-
     //seçilen katagoriye göre güncelleme
     const handleCategoryClick = (category) => {
       setSelectedCategory(category);

@@ -25,8 +25,6 @@ const HomePage = ({ listings }) => {
                 )}
                 <h2>{listing.title}</h2>
 
-                {/* Detaylar düğmesi */}
-
               </div>
              </Link>
             ))}

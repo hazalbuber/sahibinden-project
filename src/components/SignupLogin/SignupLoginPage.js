@@ -9,6 +9,7 @@ const SignupLoginPage = ({ onLogin, onSignUp }) => {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
+  // Kullanıcı adı, e-posta ve şifre alanları doluysa üye olur
   const handleSignUp = () => {
     if (username && email && password) {
       const newUser = { username, email, password };
@@ -20,6 +21,7 @@ const SignupLoginPage = ({ onLogin, onSignUp }) => {
     }
   };
 
+  //E-posta ve şifre kontrol edilir ve giriş yapılır
   const handleLogin = () => {
     if (email && password) {
       const loginSuccess = onLogin(email, password);

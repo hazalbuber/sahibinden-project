@@ -2,33 +2,31 @@
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Logo + Search on left, Links on right */
+  justify-content: space-between; 
   background-color: #3c3f4e;
   padding: 0.5rem 1rem;
   color: #fff;
 }
 
-/* Left Section: Logo and Search */
 .navbar-left {
   display: flex;
-  align-items: center; /* Align vertically */
-  gap: 1rem; /* Space between logo and search bar */
+  align-items: center; 
+  gap: 1rem; 
 }
 
 .logo-text {
   background-color: #ffff00;
-  padding: 0.1rem; /* Daha küçük bir padding */
+  padding: 0.1rem; 
   font-weight: bold;
-  font-size: 0.8rem; /* Daha küçük bir yazı boyutu */
+  font-size: 0.8rem; 
   color: #000;
   text-decoration: none;
-  border-radius: 3px; /* Köşeleri biraz daha yumuşatmak için */
+  border-radius: 3px; 
 }
 
-/* Search Bar Styling */
 .navbar-search {
   display: flex;
-  align-items: center; /* Align input and button vertically */
+  align-items: center; 
   background-color: #292c38;
   border-radius: 5px;
   padding: 0.5rem;
@@ -49,7 +47,6 @@
   cursor: pointer;
 }
 
-/* Right Section: Links */
 .navbar-links {
   display: flex;
   align-items: center;
@@ -70,7 +67,6 @@
   font-size: 0.9rem;
 }
 
-/* Post Ad Button */
 .post-ad-button {
   padding: 0.5rem 1rem;
   background-color: #007bff;

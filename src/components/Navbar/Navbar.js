@@ -19,7 +19,7 @@ const Navbar = ({ user, onLogout, showUserOptions = true }) => {
         </div>
       </div>
 
-      {/* Right side: User options */}
+
       {showUserOptions && (
         <ul className="navbar-links">
           {user ? (

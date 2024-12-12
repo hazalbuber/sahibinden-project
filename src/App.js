@@ -8,6 +8,7 @@ import CategoryPage from './components/CategoryPage/CategoryPage';
 
 
 const App = () => {
+  // Örnek veriler
   const [listings, setListings] = useState([
     {
       id: 1,
@@ -156,32 +157,37 @@ const App = () => {
 
   ]);
   const [user, setUser] = useState(null); // Aktif kullanıcı
-  const [users, setUsers] = useState([ // Örnek kayıtlı kullanıcılar
+  //örnek kayıtlı kullanıcı
+  const [users, setUsers] = useState([ 
     { username: "ElifHzl", email: "elif@outlook.com", password: "123456" },
   ]);
 
+  //yeni bir ilan eklemek için, mevcut ilanların en sonuna ekleniyor 
   const handleAddListing = (newListing) => {
     setListings((prevListings) => [...prevListings, { id: Date.now(), ...newListing }]);
   };
 
+  //kullanıcının giriş yapması için.  kayıtlı  kulanıcılar arasında doğrulama yapılan kısım.
   const handleLogin = (email, password) => {
     const foundUser = users.find(
       (user) => user.email === email && user.password === password
     );
     if (foundUser) {
       setUser(foundUser);
-      return true; // Giriş başarılı
+      return true; 
     } else {
       alert("Kullanıcı bulunamadı veya şifre hatalı!");
-      return false; // Giriş başarısız
+      return false; 
     }
   };
 
+  //yeni kullanıcı ekler
   const handleSignUp = (newUser) => {
     setUsers((prevUsers) => [...prevUsers, newUser]);
     setUser(newUser);
   };
 
+  //çıkış fonksiyonu useState çıkış yapılınca null dönücek
   const handleLogout = () => {
     setUser(null);
   };

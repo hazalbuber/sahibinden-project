@@ -11,6 +11,7 @@ const AddListing = ({ onAddListing }) => {
   const [selectedImage, setSelectedImage] = useState(null); // Fotoğraf için state
   const navigate = useNavigate();
 
+  //kategori alanları için boş yer,güncelleme...
   useEffect(() => {
     if (selectedCategory) {
       const initialFormData = {};
@@ -91,6 +92,7 @@ const AddListing = ({ onAddListing }) => {
           <h2>{selectedCategory.title} İlanı Ekle</h2>
           {selectedCategory.fields.map((field, index) => (
             <div key={index} style={{ marginBottom: '1rem' }}>
+              
               {/* Metin alanı için */}
               {field.type === 'text' && (
                 <TextField
@@ -136,7 +138,6 @@ const AddListing = ({ onAddListing }) => {
               <p style={{ marginTop: '0.5rem' }}>Fotoğraf Seçildi!!</p>
             )}
           </div>
-
 
           <Button type="submit" variant="contained" color="primary">
             İlan Ekle

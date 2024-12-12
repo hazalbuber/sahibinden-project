@@ -8,6 +8,7 @@ const DetailPage = ({ listings }) => {
   const { id } = useParams();
   const listing = listings.find((item) => item.id === Number(id));
 
+  // Eğer ilan bulunamazsa:
   if (!listing) {
     return (
       <div>
@@ -42,6 +43,7 @@ const DetailPage = ({ listings }) => {
     return <p>Fotoğraf mevcut değil.</p>;
   };
 
+  //detylar katagorilere göre
   const renderDetails = () => (
     <>
       <p><strong>Fiyat:</strong> {listing.price} TL</p>

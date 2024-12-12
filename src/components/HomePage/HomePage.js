@@ -15,6 +15,7 @@ const HomePage = ({ listings, user, onLogin, onLogout }) => {
           <h1>İlanlar</h1>
           <div className="ilan-listesi">
             {listings.map((listing) => (
+            // listings dizisindeki her ilan için bir kart oluşturuluyor
               <Link to={`/detay/${listing.id}`} key={listing.id}>
                 <div className="ilan">
                   {/* Fotoğraf Gösterimi */}
@@ -43,10 +44,3 @@ const HomePage = ({ listings, user, onLogin, onLogout }) => {
 
 export default HomePage;
 
-
-
-/*
-                <Link to={`/detay/${listing.id}`} className="details-button">
-                  Detaylar
-                </Link>
-*/

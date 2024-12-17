@@ -10,6 +10,7 @@ const AddListing = ({ onAddListing, user }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const navigate = useNavigate();
 
+  //kategori seçildiğinde, o kategorinin form alanlarını başlangıç değerleriyle doldurur
   useEffect(() => {
     if (selectedCategory) {
       const initialFormData = {};
@@ -20,20 +21,24 @@ const AddListing = ({ onAddListing, user }) => {
     }
   }, [selectedCategory]);
 
+  //Kategori Seçimi
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
 
+  //input alanlarında değişiklik olduğunda formData state'ini güncelle
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  //kullanıcının seçtiği resmi selectedImage state'ine kaydetme
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedImage(file);
   };
 
+  //Form Gönderme 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (Object.values(formData).every((value) => value !== '')) {

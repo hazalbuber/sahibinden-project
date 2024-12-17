@@ -19,6 +19,7 @@ const DetailPage = ({ listings }) => {
     );
   }
 
+  //Fotoğraf varsa ekrana gösterir; yoksa bir mesaj yazar.
   const renderImage = () => {
     if (listing.image) {
       if (listing.image instanceof File || listing.image instanceof Blob) {

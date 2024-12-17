@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
-import Footer from '../Footer/Footer';
-import styles from './SearchResults.module.css'; // CSS Module import edildi
+import styles from './SearchResults.module.css'; 
 
 const SearchResults = ({ listings }) => {
   const location = useLocation();
@@ -19,7 +18,6 @@ const SearchResults = ({ listings }) => {
         <Sidebar />
         <main>
           <h1>"{query}" için Arama Sonuçları</h1>
-          {/* Sonuç yoksa mesaj göster */}
           {filteredListings.length === 0 ? (
             <p>Aramanızla eşleşen ilan bulunamadı.</p>
           ) : (
@@ -27,7 +25,6 @@ const SearchResults = ({ listings }) => {
               {filteredListings.map((listing) => (
                 <Link to={`/detay/${listing.id}`} key={listing.id}>
                   <div className={styles.ilan}>
-                    {/* Fotoğraf Gösterimi */}
                     {listing.image && (
                       <img
                         className={styles.ilanImg}

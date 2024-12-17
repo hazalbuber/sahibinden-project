@@ -5,11 +5,12 @@ import MenuItem from '@mui/material/MenuItem';
 import "./Navbar.css";
 
 const Navbar = ({ user, onLogout, showUserOptions = true }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [searchQuery, setSearchQuery] = useState(''); // Arama sorgusu
-  const isMenuOpen = Boolean(anchorEl);
+  const [anchorEl, setAnchorEl] = useState(null); // profil menüsünün açılıp açılmadığını kontrol eder
+  const [searchQuery, setSearchQuery] = useState(''); // arama sorgusu
+  const isMenuOpen = Boolean(anchorEl); // anchorEl'e bağlı olarak menünün açık/kapalı durumunu kontrol eder
   const navigate = useNavigate();
 
+  //profil Menüsünü Açma/Kapatma
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -18,12 +19,13 @@ const Navbar = ({ user, onLogout, showUserOptions = true }) => {
     setAnchorEl(null);
   };
 
+  //sayfa Yönlendirme Fonksiyonu
   const handleNavigateToListings = () => {
     handleMenuClose();
     navigate('/ilanlarim');
   };
 
-  // Arama butonu işlevi
+  // arama Fonksiyonu
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {

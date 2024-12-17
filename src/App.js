@@ -5,6 +5,9 @@ import DetailPage from './components/DetailPage/DetailPage';
 import AddListing from './components/AddListing/AddListing';
 import SignupLoginPage from './components/SignupLogin/SignupLoginPage';
 import CategoryPage from './components/CategoryPage/CategoryPage';
+import  UserListingPage from './components/UserListingPage/UserListingPage';
+import Navbar from './components/Navbar/Navbar'; 
+import SearchResults from './components/SearchResultsPage/SearchResults';
 
 
 const App = () => {
@@ -156,45 +159,51 @@ const App = () => {
     },
 
   ]);
-  const [user, setUser] = useState(null); // Aktif kullanıcı
-  //örnek kayıtlı kullanıcı
-  const [users, setUsers] = useState([ 
-    { username: "ElifHzl", email: "elif@outlook.com", password: "123456" },
+  
+
+  const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([
+    { username: 'ElifHzl', email: 'elif@outlook.com', password: '123456' },
   ]);
 
-  //yeni bir ilan eklemek için, mevcut ilanların en sonuna ekleniyor 
   const handleAddListing = (newListing) => {
-    setListings((prevListings) => [...prevListings, { id: Date.now(), ...newListing }]);
+    setListings((prevListings) => [
+      ...prevListings,
+      { id: Date.now(), ...newListing }, // ID'yi benzersiz hale getir
+    ]);
   };
 
-  //kullanıcının giriş yapması için.  kayıtlı  kulanıcılar arasında doğrulama yapılan kısım.
+  const handleUpdateListings = (updatedListings) => {
+    setListings(updatedListings);
+  };
+
   const handleLogin = (email, password) => {
     const foundUser = users.find(
       (user) => user.email === email && user.password === password
     );
     if (foundUser) {
       setUser(foundUser);
-      return true; 
+      return true;
     } else {
-      alert("Kullanıcı bulunamadı veya şifre hatalı!");
-      return false; 
+      alert('Kullanıcı bulunamadı veya şifre hatalı!');
+      return false;
     }
   };
 
-  //yeni kullanıcı ekler
   const handleSignUp = (newUser) => {
     setUsers((prevUsers) => [...prevUsers, newUser]);
     setUser(newUser);
   };
 
-  //çıkış fonksiyonu useState çıkış yapılınca null dönücek
   const handleLogout = () => {
     setUser(null);
   };
 
   return (
     <Router>
+        <Navbar user={user} onLogout={handleLogout} />
       <Routes>
+      <Route path="/search" element={<SearchResults listings={listings} />} />
         <Route
           path="/"
           element={
@@ -205,7 +214,7 @@ const App = () => {
           path="/ilan-ekle"
           element={
             user ? (
-              <AddListing onAddListing={handleAddListing} />
+              <AddListing onAddListing={handleAddListing} user={user} />
             ) : (
               <SignupLoginPage onLogin={handleLogin} onSignUp={handleSignUp} />
             )
@@ -218,7 +227,17 @@ const App = () => {
           }
         />
         <Route path="/detay/:id" element={<DetailPage listings={listings} />} />
-        <Route path="/kategori/:id" element={<CategoryPage listings={listings} />} />
+        <Route
+          path="/kategori/:id"
+          element={<CategoryPage listings={listings} />}
+        />
+      <Route
+        path="/ilanlarim"
+        element={<UserListingPage listings={listings} user={user} onUpdateListings={handleUpdateListings} 
+        />
+        }
+      />
+
       </Routes>
     </Router>
   );

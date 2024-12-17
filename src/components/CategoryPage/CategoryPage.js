@@ -1,7 +1,6 @@
 import React, {useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Footer from '../Footer/Footer';
-import Navbar from '../Navbar/Navbar';
 import './CategoryPage.css';
 
 const CategoryPage = ({ listings = [] }) => {
@@ -9,13 +8,18 @@ const CategoryPage = ({ listings = [] }) => {
 
   //Büyük listelemelerde performans sorunlarını azaltmak için 
   const filteredListings = useMemo(
-    () => listings.filter((listing) => listing.category === id),
+    () =>
+      listings.filter(
+        (listing) =>
+          listing.category &&
+          listing.category.trim().toLowerCase() === id.trim().toLowerCase()
+      ),
     [id, listings]
   );
+  
 
   return (
     <div>
-      <Navbar showUserOptions={false} />
       <div className="category-page">
         <main className="category-main-content">
           {/* kategori id'sine göre başlık belriliyoruz */}

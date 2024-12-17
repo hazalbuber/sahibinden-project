@@ -1,49 +1,113 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // useNavigate eklendi
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import "./Navbar.css";
 
 const Navbar = ({ user, onLogout, showUserOptions = true }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [searchQuery, setSearchQuery] = useState(''); // Arama sorgusu
+  const isMenuOpen = Boolean(anchorEl);
+  const navigate = useNavigate();
+
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleNavigateToListings = () => {
+    handleMenuClose();
+    navigate('/ilanlarim');
+  };
+
+  // Arama butonu işlevi
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?query=${searchQuery}`);
+    }
+  };
+
   return (
-    <nav className="navbar">
-      {/* Left side: Logo and Search Bar */}
-      <div className="navbar-left">
-        <Link to="/" className="logo-text">
-          sahibinden.com
-        </Link>
+    <div className="navbar-container">
+      <nav className="navbar">
+        <div className="navbar-left">
+          <Link to="/" className="logo-text">
+            sahibinden.com
+          </Link>
 
-        <div className="navbar-search">
-          <input type="text" placeholder="Kelime, ilan no.. adı ile ara" />
-          <button className="search-button">
-            <i className="fa fa-search" aria-hidden="true"></i>
-          </button>
+          <form className="navbar-search" onSubmit={handleSearch}>
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Kelime, ilan no.. adı ile ara"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button type="submit" className="search-button" aria-label="Ara">
+              <i className="fa fa-search"></i> {/* Büyüteç ikonu */}
+            </button>
+          </form>
         </div>
-      </div>
 
-
-      {showUserOptions && (
-        <ul className="navbar-links">
-          {user ? (
-            <>
-              <li className="navbar-user">
-                {user.username}
-                <button onClick={onLogout} className="logout-button">
-                  Çıkış Yap
-                </button>
-              </li>
+        {showUserOptions && (
+          <ul className="navbar-links">
+            {user ? (
+              <>
+                <li>
+                  <span
+                    className="navbar-username"
+                    aria-controls="profile-menu"
+                    aria-haspopup="true"
+                    onClick={handleProfileMenuOpen}
+                  >
+                    {user.username}
+                  </span>
+                  <Menu
+                    id="profile-menu"
+                    anchorEl={anchorEl}
+                    open={isMenuOpen}
+                    onClose={handleMenuClose}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                  >
+                    <MenuItem onClick={handleNavigateToListings}>İlanlarım</MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        handleMenuClose();
+                        onLogout();
+                      }}
+                    >
+                      Çıkış Yap
+                    </MenuItem>
+                  </Menu>
+                </li>
+                <li>
+                  <Link to="/ilan-ekle" className="post-ad-button">
+                    İlan Ver
+                  </Link>
+                </li>
+              </>
+            ) : (
               <li>
-                <Link to="/ilan-ekle" className="post-ad-button">
-                  İlan Ver
+                <Link to="/giriş-yap" className="login-link">
+                  Giriş Yap / Üye Ol
                 </Link>
               </li>
-            </>
-          ) : (
-            <li>
-              <Link to="/giriş-yap">Giriş Yap</Link>
-            </li>
-          )}
-        </ul>
-      )}
-    </nav>
+            )}
+          </ul>
+        )}
+      </nav>
+    </div>
   );
 };
 

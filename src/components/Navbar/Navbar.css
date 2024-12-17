@@ -2,7 +2,7 @@
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   background-color: #3c3f4e;
   padding: 0.5rem 1rem;
   color: #fff;
@@ -10,26 +10,26 @@
 
 .navbar-left {
   display: flex;
-  align-items: center; 
-  gap: 1rem; 
+  align-items: center;
+  gap: 1rem;
 }
 
 .logo-text {
   background-color: #ffff00;
-  padding: 0.1rem; 
+  padding: 0.1rem;
   font-weight: bold;
-  font-size: 0.8rem; 
+  font-size: 1.5rem;
   color: #000;
   text-decoration: none;
-  border-radius: 3px; 
+  border-radius: 3px;
 }
 
 .navbar-search {
   display: flex;
-  align-items: center; 
+  align-items: center;
   background-color: #292c38;
   border-radius: 5px;
-  padding: 0.5rem;
+  padding: 0.1rem;
 }
 
 .navbar-search input {
@@ -38,6 +38,7 @@
   color: #fff;
   outline: none;
   padding: 0.5rem;
+  font-size: 1rem;
 }
 
 .search-button {
@@ -45,6 +46,14 @@
   border: none;
   color: #fff;
   cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-button:hover {
+  color: #f7b500;
 }
 
 .navbar-links {
@@ -54,11 +63,6 @@
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.navbar-links li {
-  display: flex;
-  align-items: center;
 }
 
 .navbar-links a {
@@ -81,4 +85,6 @@
   background-color: #0056b3;
 }
 
-  
+.navbar-links .MuiIconButton-root {
+  color: #fff;
+}

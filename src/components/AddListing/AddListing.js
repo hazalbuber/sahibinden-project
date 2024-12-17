@@ -1,57 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../Navbar/Navbar';
 import styles from './AddListing.module.css';
 import { FormControl, InputLabel, Select, MenuItem, TextField, Button } from '@mui/material';
 import categories from './AddListng.json';
 
-const AddListing = ({ onAddListing }) => {
-  const [selectedCategory, setSelectedCategory] = useState(null); // Seçilen kategori tutan state
-  const [formData, setFormData] = useState({}); // Form verilerini tutan state
-  const [selectedImage, setSelectedImage] = useState(null); // Fotoğraf için state
+const AddListing = ({ onAddListing, user }) => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [formData, setFormData] = useState({});
+  const [selectedImage, setSelectedImage] = useState(null);
   const navigate = useNavigate();
 
-  //kategori alanları için boş yer,güncelleme...
   useEffect(() => {
     if (selectedCategory) {
       const initialFormData = {};
       selectedCategory.fields.forEach((field) => {
-        initialFormData[field.name] = ""; // Boş yer
+        initialFormData[field.name] = '';
       });
       setFormData(initialFormData);
     }
   }, [selectedCategory]);
 
-  // Seçilen kategoriye göre güncelleme
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
 
-  // Metin alanlarına giriş için
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Fotoğraf dosyası değiştiğinde çağrılır
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedImage(file);
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Sayfanın yeniden yüklenmesini önlemek için
-    if (Object.values(formData).every((value) => value !== "")) {
-      // Kontrol kısmı, dolu olup olmadığını kontrol eder
-      const newListing = { 
-        ...formData, 
-        category: selectedCategory.title, 
-        image: selectedImage 
+    e.preventDefault();
+    if (Object.values(formData).every((value) => value !== '')) {
+      const newListing = {
+        id: Date.now(), // Benzersiz ID
+        ...formData,
+        category: selectedCategory.category, // Kategori id'si
+        categoryTitle: selectedCategory.title, // Kategori başlığı
+        image: selectedImage,
+        owner: user.username,
+        active: true,
       };
       onAddListing(newListing);
-      navigate('/'); // Ana sayfaya yönlendirme
+      navigate('/');
       alert('İlan başarıyla eklendi!');
-
       setSelectedCategory(null);
       setFormData({});
       setSelectedImage(null);
@@ -62,8 +59,7 @@ const AddListing = ({ onAddListing }) => {
 
   return (
     <div>
-      <Navbar />
-      {!selectedCategory ? ( // Kategori seçilmeden önceki sayfa
+      {!selectedCategory ? (
         <div className={styles.outerWrapper}>
           <div className={styles.categoryPage}>
             <h2>Adım Adım Kategori Seç</h2>
@@ -92,8 +88,6 @@ const AddListing = ({ onAddListing }) => {
           <h2>{selectedCategory.title} İlanı Ekle</h2>
           {selectedCategory.fields.map((field, index) => (
             <div key={index} style={{ marginBottom: '1rem' }}>
-              
-              {/* Metin alanı için */}
               {field.type === 'text' && (
                 <TextField
                   fullWidth
@@ -103,8 +97,6 @@ const AddListing = ({ onAddListing }) => {
                   onChange={handleChange}
                 />
               )}
-
-              {/* Seçenekli yapı için */}
               {field.type === 'select' && (
                 <FormControl fullWidth>
                   <InputLabel>{field.label}</InputLabel>
@@ -123,22 +115,19 @@ const AddListing = ({ onAddListing }) => {
               )}
             </div>
           ))}
-
-          {/* Fotoğraf Yükleme Alanı */}
           <div style={{ marginBottom: '1rem' }}>
-            <label htmlFor="fileInput" style={{ cursor: 'pointer', color: 'blue' }}>Fotoğraf Seç</label>
+            <label htmlFor="fileInput" style={{ cursor: 'pointer', color: 'blue' }}>
+              Fotoğraf Seç
+            </label>
             <input
               id="fileInput"
               type="file"
               onChange={handleFileChange}
               accept="image/*"
-              style={{ display: 'none' }} // Görünmez yaparak yalnızca label tıklanabilir olur
+              style={{ display: 'none' }}
             />
-            {selectedImage && (
-              <p style={{ marginTop: '0.5rem' }}>Fotoğraf Seçildi!!</p>
-            )}
+            {selectedImage && <p style={{ marginTop: '0.5rem' }}>Fotoğraf Seçildi!</p>}
           </div>
-
           <Button type="submit" variant="contained" color="primary">
             İlan Ekle
           </Button>
@@ -149,4 +138,3 @@ const AddListing = ({ onAddListing }) => {
 };
 
 export default AddListing;
-

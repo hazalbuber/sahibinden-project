@@ -1,0 +1,41 @@
+.searchResultsBody {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Tüm ekran yüksekliği kadar uzanır */
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+}
+
+.homepage-content {
+  flex: 1; /* İçerik alanı esnek şekilde uzar */
+}
+
+.ilanListesi {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1rem;
+}
+
+.ilan {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: white;
+  text-align: center;
+}
+
+.ilanImg {
+  max-width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.ilanTitle {
+  font-size: 1rem;
+  color: #333;
+  margin-top: 0.5rem;
+}
+
+  

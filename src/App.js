@@ -22,6 +22,7 @@ const App = () => {
       metrekare: 123,
       roomNum: '3+1',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR980ox7lRMQdKxbggj-LoSa7XctfePUAROdA&s', // Örnek görsel
+
     },
     {
       id: 2,

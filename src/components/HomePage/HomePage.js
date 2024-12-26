@@ -4,6 +4,8 @@ import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
 import './HomePage.css';
 
+const BACKEND_URL ="";
+
 const HomePage = ({ listings}) => {
   const activeListings = listings.filter((listing) => listing.hasOwnProperty('active') ? listing.active : true);
   return (

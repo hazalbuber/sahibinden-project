@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import './CategoryPage.css';
 
+const BACKEND_URL ="";
+
 const CategoryPage = ({ listings = [] }) => {
   const { id } = useParams();
 

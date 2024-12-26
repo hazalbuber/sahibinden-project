@@ -10,41 +10,15 @@
             {"label": "Fiyat", "name": "price", "type": "text"},
             {"label": "Metrekare", "name": "metrekare", "type": "text"},
 
-            {"label":"Oda Sayısı", "name":"roomNum", "type":"select", 
-            "options": ["1+1", "2+1", "3+1", "4+1", "5 ve üzeri"]},
-            
-            {"label":"Bina Yaşı", "name":"homeAge", "type":"select", 
-            "options": ["0","1","2","3","4","5-10","11-15","16-20","21-25","26-30","30 ve üzeri"]},
-
-            {"label":"Binadaki Kat Sasyısı", "name":"buildingFloors", "type":"select", 
-            "options": ["0","1","2","3","4","5","6","7","8","9","10 ve üzeri"]},
-
-            {"label":"Bulunduğu Kat", "name":"floor", "type":"select", 
-            "options": ["Bodrum Katı","Zemin Katı","Giriş Katı","Yüksel Giriş","Çatı Katı","0","1","2","3","4","5","6","7","8","9"]},
-
-            {"label":"Isıtma", "name":"heating", "type":"select", 
-            "options": ["Yok", "Soba", "Doğalgaz", "Merkezi", "Yerden Isıtma"]},
-
-            {"label":"Tapu Durumu", "name":"titleDeed", "type":"select", 
-            "options": ["Kat Mülkiyeti","Kat İrtifaklı","Hisseli Tapu","Müstakil Tapulu","Arsa Tapulu","Kooperatif Hisseli Tapu","Yurt Dışı Tapulu","apu Kayadı Yok"]},
-
-            {"label": "Taşınmaz numarası", "name": "tasınmazNum", "type": "text"},
-
-            {"label":"Kimden", "name":"kimden", "type":"select", 
-            "options": ["Sahibinden","Emlakçı"]},
-
-            {"label": "Takas","name": "exchange","type": "select",
-            "options": ["Evet", "Hayır"]},
-
             {"label":"Emlak Türü", "name":"homeType", "type":"select", 
             "options": ["Satılık","Kiralık","Devren Satılık","Devren Kiralık"]},
 
-            { "label": "İl", "name": "il", "type": "text" },
-            { "label": "İlçe", "name": "ilce", "type": "text" },
-            { "label": "Mahalle", "name": "mahalle", "type": "text" }
+            {"label": "Garaj","name": "garage","type": "select",
+            "options": ["Evet", "Hayır"]},
 
+            { "label": "Lokasyon", "name": "location", "type": "text" },
 
-            
+            {"label": "Açıklama" , "name":"description", "type": "text"} 
 
         ]
     }, {
@@ -70,33 +44,9 @@
             {"label": "Model", "name": "model", "type": "text"},
             {"label": "Model Yılı", "name": "modelYear", "type": "text"},
             {"label": "KM", "name": "km", "type": "text"},
+            { "label": "Lokasyon", "name": "location", "type": "text" },
 
-            {"label":"Renk", "name":"colar", "type":"select", 
-            "options": ["Siyah","Beyaz","Kırmızı","Gri","Mavi","Borda","Sarı","Turuncu","Diğer Renk"]},
-
-            {"label":"Kimden", "name":"kimden", "type":"select", 
-            "options": ["Sahibinden","Galeri"]},
-
-            {"label": "Garanti","name": "guarantee","type": "select",
-            "options": ["Evet", "Hayır"]},
-
-            {"label": "Ağır Hasar Kaydı","name": "damageInfo","type": "select",
-            "options": ["Evet", "Hayır"]},
-
-            {"label":"Plaka / Uyruk ", "name":"plateNationality", "type":"select", 
-            "options": ["Türkiye (TR) plakalı","Yabancı Plaka","Mavi (MA) Plakalı"]},
-
-            {"label": "Araç Plakası", "name": "plateVehicle", "type": "text"},
-            {"label": "Şasi No", "name": "plateNo", "type": "text"},
-
-
-            {"label": "Takas","name": "exchange","type": "select",
-            "options": ["Evet", "Hayır"]},
-
-            { "label": "İl", "name": "il", "type": "text" },
-            { "label": "İlçe", "name": "ilce", "type": "text" },
-            { "label": "Mahalle", "name": "mahalle", "type": "text" }
-
+            {"label": "Açıklama" , "name":"description", "type": "text"} 
 
         ]
     }

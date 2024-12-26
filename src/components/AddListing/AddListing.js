@@ -4,6 +4,8 @@ import styles from './AddListing.module.css';
 import { FormControl, InputLabel, Select, MenuItem, TextField, Button } from '@mui/material';
 import categories from './AddListng.json';
 
+const BACKEND_URL ="";
+
 const AddListing = ({ onAddListing, user }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [formData, setFormData] = useState({});
@@ -143,3 +145,46 @@ const AddListing = ({ onAddListing, user }) => {
 };
 
 export default AddListing;
+
+
+/*
+
+{
+  "label": "Fiyat",
+  "name": "price",
+  "type": "text",
+  "dataType": "float"
+},
+{
+  "label": "Oda Sayısı",
+  "name": "rooms",
+  "type": "text",
+  "dataType": "integer"
+}
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+
+  // JSON'daki field bilgisini bul
+  const field = selectedCategory.fields.find((field) => field.name === name);
+
+  // Veri tipine göre dönüşüm yap
+  let convertedValue = value;
+  if (field) {
+    switch (field.dataType) {
+      case "number":
+        convertedValue = value === "" ? "" : parseFloat(value); // Boş bırakılırsa boş string
+        break;
+      case "boolean":
+        convertedValue = value === "Evet"; // "Evet" ise true, diğerleri false
+        break;
+      default:
+        convertedValue = value; // Varsayılan olarak string
+    }
+  }
+
+  // Form datasını güncelle
+  setFormData({ ...formData, [name]: convertedValue });
+};
+
+*/

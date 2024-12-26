@@ -3,14 +3,32 @@ import { Link, useLocation } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
 import styles from './SearchResults.module.css'; 
 
+const BACKEND_URL = "";
+
 const SearchResults = ({ listings }) => {
   const location = useLocation();
-  const query = new URLSearchParams(location.search).get('query');
+  const query = new URLSearchParams(location.search).get('query')?.toLowerCase() || '';
 
   // Arama sonuçlarını filtrele
-  const filteredListings = listings.filter((listing) =>
-    listing.title.toLowerCase().includes(query.toLowerCase())
-  );
+  const filteredListings = listings.filter((listing) => {
+    const searchableFields = [
+      listing.title,
+      listing.price?.toString(),
+      listing.model?.toString(),
+      listing.modelYear?.toString(),
+      listing.location,
+      listing.vehicleType,
+      listing.description,
+      listing.metrekare?.toString(),
+      listing.homeType,
+      listing.garage,
+      listing.km?.toString(),
+    ];
+    
+    return searchableFields.some(
+      (field) => field && field.toLowerCase().includes(query)
+    );
+  });
 
   return (
     <div className={styles.searchResultsBody}>

@@ -4,6 +4,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import "./Navbar.css";
 
+const BACKEND_URL ="";
+
 const Navbar = ({ user, onLogout, showUserOptions = true }) => {
   const [anchorEl, setAnchorEl] = useState(null); // profil menüsünün açılıp açılmadığını kontrol eder
   const [searchQuery, setSearchQuery] = useState(''); // arama sorgusu

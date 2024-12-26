@@ -3,6 +3,8 @@ import { Menu, MenuItem } from '@mui/material';
 import styles from "./UserListingPage.module.css";
 import Footer from '../Footer/Footer';
 
+const BACKEND_URL ="";
+
 const UserListingPage = ({ listings, user, onUpdateListings }) => {
   const [activeTab, setActiveTab] = useState("active"); // Varsayılan sekme: Yayında Olanlar
   const [anchorEl, setAnchorEl] = useState(null);

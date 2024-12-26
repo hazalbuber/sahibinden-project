@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SignupLoginPage.css";
 
+const BACKEND_URL ="";
+
 const SignupLoginPage = ({ onLogin, onSignUp }) => {
   const [isSignUp, setIsSignUp] = useState(true);
   const [email, setEmail] = useState("");
